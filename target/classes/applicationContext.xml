@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+       http://www.springframework.org/schema/beans/spring-beans.xsd   
+       http://www.springframework.org/schema/aop   
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+	<!-- Enable AspectJ style of Spring AOP -->
+	<aop:aspectj-autoproxy />
+
+	<!-- Configure Employee Bean and initialize it -->
+	<bean name="operation" class="com.springAOPDemo.Operation">
+		<property name="name" value="Dummy Name"></property>
+	</bean>
+
+	<!-- Configure EmployeeService bean -->
+	<bean name="operationService" class="com.springAOPDemo.OperationService">
+		<property name="operation" ref="operation"></property>
+	</bean>
+
+	<!-- Configure Aspect Beans, without this Aspects advices wont execute -->
+	<bean name="trackOperation" class="com.springAOPDemo.TrackOperation" />
+	<bean name="operationAspectPointcut" class="com.springAOPDemo.OperationAspectPointcut" />
+	<bean name="operationAspectJoinPoint" class="com.springAOPDemo.OperationAspectJoinPoint" />
+	<bean name="operationAfterAspect" class="com.springAOPDemo.OperationAfterAspect" />
+	<bean name="operationAroundAspect" class="com.springAOPDemo.OperationAroundAspect" />
+
+
+
+<!-- <bean id="opBean" class="com.springAOPDemo.Operation"> </bean> <bean 
+	id="trackMyBean" class="com.springAOPDemo.TrackOperation"></bean> <bean class="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator"></bean> -->
+</beans>
